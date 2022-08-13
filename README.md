@@ -11,3 +11,7 @@ Benchmark of different snake case conversion methods
 |  JsonNetOptimizedSb1000Strings | 1,246,180.5 ns |   582.19 ns |   486.15 ns |   821,842 B |
 |  JsonNetStackallocSingleString |       813.2 ns |     9.39 ns |     8.78 ns |       368 B |
 |   JsonNetStackalloc1000Strings | 1,125,884.4 ns |   403.12 ns |   357.36 ns |   365,841 B |
+
+[JSON.NET](https://github.com/JamesNK/Newtonsoft.Json)
+
+[Remora](https://github.com/Remora/Remora.Rest)
