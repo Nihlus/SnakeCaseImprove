@@ -12,6 +12,12 @@ Benchmark of different snake case conversion methods
 |  JsonNetStackallocSingleString |       813.2 ns |     9.39 ns |     8.78 ns |       368 B |
 |   JsonNetStackalloc1000Strings | 1,125,884.4 ns |   403.12 ns |   357.36 ns |   365,841 B |
 
+Note: In rare and odd inputs, stackalloc method will fail and produce out of bounds esception
+
+In most cases optimal buffer is 1.5x of input size, but rare odd inputs can produce more than that, requiring reallocating to 2x input size
+
+It is currently difficult to realloc span in safe C#
+
 [JSON.NET](https://github.com/JamesNK/Newtonsoft.Json)
 
 [Remora](https://github.com/Remora/Remora.Rest)
