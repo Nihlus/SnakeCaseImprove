@@ -9,15 +9,15 @@ public class SnakeCaserBenchmark
     private readonly JsonNetStackallocSnakeCaseNamingPolicy _jsonNetStackalloc = new();
     private readonly JaxSnakeCaseNamingPolicy _jax = new();
 
-    [Params("OnceUponATime")]
-    public string Value { get; set; }
-
     [Benchmark(Baseline = true)]
-    public string Remora() => _remora.ConvertName(this.Value);
+    [Arguments("OnceUponATime")]
+    public string Remora(string value) => _remora.ConvertName(value);
 
     [Benchmark]
-    public string JsonNetStackalloc() => _jsonNetStackalloc.ConvertName(this.Value);
+    [Arguments("OnceUponATime")]
+    public string JsonNetStackalloc(string value) => _jsonNetStackalloc.ConvertName(value);
 
     [Benchmark]
-    public string JaxStackalloc() => _jax.ConvertName(this.Value);
+    [Arguments("OnceUponATime")]
+    public string JaxStackalloc(string value) => _jax.ConvertName(value);
 }
