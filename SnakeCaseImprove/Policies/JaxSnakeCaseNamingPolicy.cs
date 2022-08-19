@@ -56,7 +56,7 @@ public static class FastSnakeCaser
         }
     }
 
-    private static int SnakeCore(ReadOnlySpan<char> input, Span<char> output)
+    private static int SnakeCore(in ReadOnlySpan<char> input, in Span<char> output)
     {
         var index = 0;
         var state = InputState.Start;
