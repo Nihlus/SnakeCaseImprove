@@ -81,7 +81,7 @@ public class JsonNetStackallocPolicyTests : SnakeCaseNamingPolicyTests<JsonNetSt
     protected override JsonNetStackallocSnakeCaseNamingPolicy Policy => new();
 }
 
-public class VelvetPolicyTests : SnakeCaseNamingPolicyTests<VelvetSnakeCaseNamingPolicy>
+public class VelvetPolicyTests : SnakeCaseNamingPolicyTests<JaxSnakeCaseNamingPolicy>
 {
-    protected override VelvetSnakeCaseNamingPolicy Policy => new();
+    protected override JaxSnakeCaseNamingPolicy Policy => new();
 }

@@ -9,7 +9,7 @@ public class SnakeCaserBenchmark
     private readonly JsonNetSnakeCaseNamingPolicy _jsonNet = new();
     private readonly JsonNetOptimizedSbSnakeCaseNamingPolicy _jsonNetOptimizedSb = new();
     private readonly JsonNetStackallocSnakeCaseNamingPolicy _jsonNetStackalloc = new();
-    private readonly VelvetSnakeCaseNamingPolicy _velvet = new();
+    private readonly JaxSnakeCaseNamingPolicy _jax = new();
 
     [Params("OnceUponATime")]
     public string Value { get; set; }
@@ -27,5 +27,5 @@ public class SnakeCaserBenchmark
     public string JsonNetStackalloc() => _jsonNetStackalloc.ConvertName(this.Value);
 
     [Benchmark]
-    public string VelvetStackalloc() => _velvet.ConvertName(this.Value);
+    public string JaxStackalloc() => _jax.ConvertName(this.Value);
 }
