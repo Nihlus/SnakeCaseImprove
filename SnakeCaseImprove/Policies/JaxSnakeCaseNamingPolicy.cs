@@ -35,29 +35,24 @@ public static class FastSnakeCaser
         }
 
         var outputSize = input.Length + (input.Length / 2);
-        return outputSize <= _stackAllocationCap
-            ? SnakeStackAlloc(input, outputSize)
-            : SnakeHeapAlloc(input, outputSize);
-    }
-
-    private static string SnakeStackAlloc(string input, int outputSize)
-    {
-        Span<char> output = stackalloc char[outputSize];
-        var length = SnakeCore(input, output);
-        return new(output[..length]);
-    }
-
-    private static string SnakeHeapAlloc(string input, int outputSize)
-    {
-        var output = ArrayPool<char>.Shared.Rent(outputSize);
-        try
+        if (outputSize <= _stackAllocationCap)
         {
+            Span<char> output = stackalloc char[outputSize];
             var length = SnakeCore(input, output);
-            return new string(output[..length]);
+            return new(output[..length]);
         }
-        finally
+        else
         {
-            ArrayPool<char>.Shared.Return(output);
+            var output = ArrayPool<char>.Shared.Rent(outputSize);
+            try
+            {
+                var length = SnakeCore(input, output);
+                return new string(output[..length]);
+            }
+            finally
+            {
+                ArrayPool<char>.Shared.Return(output);
+            }
         }
     }
 
